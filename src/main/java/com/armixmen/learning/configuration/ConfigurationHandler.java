@@ -5,10 +5,10 @@ import java.io.File;
 import net.minecraftforge.common.config.Configuration;
 
 public class ConfigurationHandler 
-{
+{	public static Configuration Config;
 	public static void Init(File configFile)
 	{
-		Configuration Config = new Configuration(configFile);
+		Config = new Configuration(configFile);
 		boolean configValue = false;
 		try
 		{
@@ -21,8 +21,12 @@ public class ConfigurationHandler
 		}
 		finally 
 		{
+			if (Config.hasChanged())
+			{
 			Config.save();
+			}
 		}
+			
 		System.out.println("Configuration test:" + configValue);
 	}
 }
